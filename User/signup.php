@@ -15,9 +15,10 @@ if($user->signup()){
 	$user_arr= array(
 		"status" => true, 
 		"message" => "Successfully Signup!",
-		"user_id" => "user_id", 
+		"user_id" => $user->user_id, 
 		"full_name" => $user->full_name, 
-		"email" => $user->email
+		"email" => $user->email,
+		"password" => $user->password,
 	);
 }
 else{
