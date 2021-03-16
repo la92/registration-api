@@ -11,8 +11,12 @@ $db = $database->getConnection();
 
 $user = new User($db);
 //if(isset($_POST["email"]) && isset($_POST["password"])){
-$user->email = isset($_GET["email"]) ? $_GET["email"] : echo "ERROR";
-$user->password = base64_encode(isset($_GET["password"]) ? $_GET["password"] : echo "ERROR");
+
+//$user->fullname = $_GET["fullname"];
+$user->email = $_GET["email"];
+$user->password = base64_encode($_GET["password"]);
+//$user->email = isset($_GET["email"]) ? $_GET["email"] : echo "ERROR";
+//$user->password = base64_encode(isset($_GET["password"]) ? $_GET["password"] : echo "ERROR");
 
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
@@ -22,8 +26,9 @@ if($stmt->rowCount() > 0){
         "status"=>true,
         "message" => "Successfully login!", 
         "user_id" => $row["user_id"],
-       //"fullname" => $row["fullname"],
-        "email" => $row["email"]
+      // "fullname" => $row["fullname"],
+        "email" => $row["email"],
+        "password"=> $row["password"]
     );
 
 }
