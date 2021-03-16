@@ -24,7 +24,7 @@ if($stmt->rowCount() > 0){
         "password" => $row['password']
     );
 
-}}
+}
 else{
     $user_arr = array(
         "status" => false,
@@ -33,5 +33,13 @@ else{
 }
 
 echo json_encode($user_arr);
-
+}
+else
+{
+  $user_arr = array(
+        "status" => false,
+        "message" => "Post Failure",
+    );
+  echo json_encode(user_arr);
+}
 ?>
