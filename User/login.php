@@ -1,16 +1,18 @@
 <?php
 
-include_once '../config/database.php';
-include_once '../objects/user.php';
+include_once "../config/database.php";
+include_once "../objects/user.php";
 
 $database = new Database();
 $db = $database->getConnection();
 
-$_POST = json_decode(file_get_contents('php://input'), true);
+//$_POST = json_decode(file_get_contents('php://input'), true);
+
+
 $user = new User($db);
-if(isset($_POST["email"]) && isset($_POST["password"])){
-$user->email = $_POST["email"];
-$user->password = base64_encode($_POST["password"]);
+//if(isset($_POST["email"]) && isset($_POST["password"])){
+$user->email = isset($_GET["email"]) ? $_GET["email"] : echo "ERROR";
+$user->password = base64_encode(isset($_GET["password"]) ? $_GET["password"] : echo "ERROR");
 
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
@@ -19,10 +21,9 @@ if($stmt->rowCount() > 0){
     $user_arr = array(
         "status"=>true,
         "message" => "Successfully login!", 
-        "user_id" => $row['user_id'],
-        "full_name" => $row['full_name'],
-        "email" => $row['email'],
-        "password" => $row['password']
+        "user_id" => $row["user_id"],
+       //"fullname" => $row["fullname"],
+        "email" => $row["email"]
     );
 
 }
@@ -34,17 +35,6 @@ else{
 
 }
 
-echo json_encode($user_arr);
-echo "Email: ".$_POST["email"]."\n";
+print_r(json_encode($user_arr));
 
-echo "Password: ".$_POST["password"];
-}
-else
-{
-  $user_arr = array(
-        "status" => false,
-        "message" => "Post Failure",
-    );
-  echo json_encode($user_arr);
-}
 ?>
