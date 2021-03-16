@@ -31,9 +31,13 @@ else{
         "status" => false,
         "message" => "Invalid Email or Password!",
     );
+
 }
 
 echo json_encode($user_arr);
+echo "Email: ".$_POST["email"]."\n";
+
+echo "Password: ".$_POST["password"];
 }
 else
 {
