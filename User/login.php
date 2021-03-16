@@ -8,8 +8,8 @@ $db = $database->getConnection();
 
 $user = new User($db);
 if(isset($_POST["email"]) && isset($_POST["password"])){
-$user->email = isset($_POST["email"]) ? $_POST["email"] : echo "ERROR");
-$user->password = base64_encode(isset($_POST["password"]) ? $_POST["password"] : echo "ERROR");
+$user->email = $_POST["email"];
+$user->password = base64_encode($_POST["password"]);
 
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
