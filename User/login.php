@@ -6,6 +6,7 @@ include_once '../objects/user.php';
 $database = new Database();
 $db = $database->getConnection();
 
+$_POST = json_decode(file_get_contents('php://input'), true);
 $user = new User($db);
 if(isset($_POST["email"]) && isset($_POST["password"])){
 $user->email = $_POST["email"];
@@ -40,6 +41,6 @@ else
         "status" => false,
         "message" => "Post Failure",
     );
-  echo json_encode(user_arr);
+  echo json_encode($user_arr);
 }
 ?>

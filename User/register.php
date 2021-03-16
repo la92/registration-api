@@ -6,6 +6,7 @@ $database = new Database();
 $db = $database->getConnection();
 
 $user = new User($db);
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 $user->full_name = $_POST['full_name'];
 $user->email = $_POST['email'];
