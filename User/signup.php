@@ -28,6 +28,6 @@ else{
 	);
 }
 
-print_r(json_encode($user_arr));
+echo json_encode($user_arr);
 
 ?>
