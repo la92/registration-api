@@ -6,13 +6,13 @@ include_once "../objects/user.php";
 $database = new Database();
 $db = $database->getConnection();
 
-//$_POST = json_decode(file_get_contents('php://input'), true);
+$_GET = json_decode(file_get_contents('php://input'), true);
 
 
 $user = new User($db);
 //if(isset($_POST["email"]) && isset($_POST["password"])){
 
-//$user->fullname = $_GET["fullname"];
+$user->fullname = $_GET["fullname"];
 $user->email = $_GET["email"];
 $user->password = base64_encode($_GET["password"]);
 //$user->email = isset($_GET["email"]) ? $_GET["email"] : echo "ERROR";
@@ -26,8 +26,8 @@ if($stmt->rowCount() > 0){
         "status"=>true,
         "message" => "Successfully login!", 
         "user_id" => $row["user_id"],
-      // "fullname" => $row["fullname"],
-        "email" => $row["email"],
+        "fullname" => $row["fullname"],
+        "email" => $row["email"],   
         "password"=> $row["password"]
     );
 

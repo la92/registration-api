@@ -7,7 +7,7 @@ $db = $database->getConnection();
 
 $user = new User($db);
 
-//$_POST = json_decode(file_get_contents('php://input'), true);
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 
 //if(isset($_POST["full_name"]) &&isset($_POST["email"]) && isset($_POST["password"])){

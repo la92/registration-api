@@ -17,6 +17,7 @@ class User{
 			return false;
 		}
 
+
 		$query = "INSERT INTO " .$this->table_name. "
 			SET fullname=:fullname, email=:email, password=:password";
 
@@ -42,7 +43,7 @@ class User{
 	function login(){
 
 
-		$query = "SELECT * FROM " .$this->table_name. " WHERE email='" .$this->email. "' AND password='" .$this->password."'";
+		$query = "SELECT * FROM " .$this->table_name. " WHERE fullname='" .$this->fullname. "' AND email='" .$this->email. "' AND password='" .$this->password."'";
 
 		$stmt = $this->conn->prepare($query);
 
