@@ -40,6 +40,6 @@ else{
 
 }
 
-print_r(json_encode($user_arr));
+print_r(json_encode($user_arr, JSON_PRETTY_PRINT));
 
 ?>

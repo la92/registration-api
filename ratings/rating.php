@@ -41,14 +41,16 @@ class Rating{
 
 	function getRating(){
 
-		$query = "SELECT * FROM ".$this->table_name." WHERE user_id='".$this->user_id."';";
+		$query = "SELECT `imdb_id` FROM ".$this->table_name." WHERE `user_id`='".$this->user_id."';";
 
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->execute();
+		//print_r($stmt);
 
-		print_r($stmt);
-
+		//$result = $stmt->fetchAll();
+		//print_r($result);
+		//return $result;
 		return $stmt;
 	}
 
