@@ -10,8 +10,6 @@ $user = new User($db);
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 
-//if(isset($_POST["full_name"]) &&isset($_POST["email"]) && isset($_POST["password"])){
-
 $user->fullname = $_POST["fullname"];
 $user->email = $_POST["email"];
 $user->password = base64_encode($_POST["password"]);
@@ -22,8 +20,8 @@ if($user->signup()){
 		"message" => "Successfully Signup!",
 		"user_id" => $user->user_id,
 		"fullname"=> $user->fullname,
-		"email"=> $user->email
-		//"password" => $user->password	
+		"email"=> $user->email,
+		"password" => $user->password	
 
 
 	);
@@ -34,10 +32,10 @@ if($user->signup()){
 else{
 	$user_arr = array(
 		"status" => false, 
-		"message" => "User already exists!"
+		"message" => "Invalid information!"
 	);
 	
 }
-print_r(json_encode($user_arr));
+print_r(json_encode($user_arr,JSON_PRETTY_PRINT));
 
 ?>

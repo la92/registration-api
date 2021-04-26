@@ -52,8 +52,6 @@ class User{
 	}
 
 
-
-
 	function isAlreadyExist(){
 		$query = "SELECT * FROM ".$this->table_name." WHERE email='".$this->email."'";
 		$stmt = $this->conn->prepare($query);
@@ -66,6 +64,16 @@ class User{
 			return false;
 		}
 	}
+
+	function changePassword(){
+		
+		$query = "UPDATE `user_login` SET password='".$this->password."' WHERE user_id ='".$this->user_id."'";
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->execute();
+		return $stmt;
+	}
+
 }
 
 ?>
