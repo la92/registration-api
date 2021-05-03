@@ -18,6 +18,18 @@ $user->password = base64_encode($_GET["password"]);
 //$user->email = isset($_GET["email"]) ? $_GET["email"] : echo "ERROR";
 //$user->password = base64_encode(isset($_GET["password"]) ? $_GET["password"] : echo "ERROR");
 
+ if(!preg_match("/^[a-zA-Z'-]+$/", $user->fullname)){
+    echo 'Name is not valid! It must not contain numbers or special characters';
+    exit;
+  }
+
+ if (!filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+  $emailErr = "Invalid email format";
+  echo "Email is not valid format";
+  exit;
+}
+
+
 $stmt = $user->login();
 if($stmt->rowCount() > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

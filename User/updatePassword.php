@@ -6,21 +6,21 @@ include_once "../objects/user.php";
 $database = new Database();
 $db = $database->getConnection();
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 $_GET = json_decode(file_get_contents('php://input'), true);
 
 $user = new User($db);
 
-$user->password = base64_encode($_PUT["password"]);
-$user->user_id = $_GET['user_id'];
+$user->password = base64_encode($_POST["password"]);
+$user->email = $_GET['email'];
 
 
 if($user->changePassword()){
 	$new_passArr = array(
 		"status" => true,
 		"message"=> "Password Successfully Changed.",
-		"user_id" =>$user->user_id,
+		"email"=>$user->email,
 		"password"=>$user->password
 	);
 
